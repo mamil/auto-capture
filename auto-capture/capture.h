@@ -1,16 +1,18 @@
 #pragma once
 #include <string>
-class capture
+
+class Capture
 {
 public:
-	capture();
-	~capture();
+    Capture();
+    ~Capture();
 
-	int setConfig(std::string command);
-	int startCapture();
+    int setConfig(std::string command);
+    int startCapture();
+
+    void getInterfaceInfo();
 
 private:
-	std::string command_;
-	std::string winDumpPath_;
+    std::string command_;
+    std::string winDumpPath_;
 };
-

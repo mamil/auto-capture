@@ -1,34 +1,40 @@
 #include <iostream>
-#include "capture.h"
+#include "Capture.h"
 
-capture::capture()
+Capture::Capture()
 {
-	std::cout << "ctor" << std::endl;
-	winDumpPath_ = ".\\3rd\\WinDump.exe";
+    std::cout << __func__ << " ctor" << std::endl;
+    winDumpPath_ = ".\\3rd\\WinDump.exe";
 }
 
-capture::~capture()
+Capture::~Capture()
 {
-	std::cout << "dtor" << std::endl;
+    std::cout << __func__ << " dtor" << std::endl;
 }
 
-int capture::setConfig(std::string command)
+int Capture::setConfig(std::string command)
 {
-	command_ = command;
-	return 0;
+    command_ = command;
+    return 0;
 }
 
-int capture::startCapture()
+int Capture::startCapture()
 {
-	if (command_.empty())
-	{
-		std::cout << "please set capture command first!" << std::endl;
-		return -1;
-	}
-	else
-	{
-		auto runCommand = winDumpPath_ + command_;
-		system(runCommand.c_str());
-		return 0;
-	}
+    if (command_.empty())
+    {
+        std::cout << "please set Capture command first!" << std::endl;
+        return -1;
+    }
+    else
+    {
+        auto runCommand = winDumpPath_ + " " + command_;
+        system(runCommand.c_str());
+        return 0;
+    }
+}
+
+void Capture::getInterfaceInfo()
+{
+    auto runCommand = winDumpPath_ + " -D";
+    system(runCommand.c_str());
 }
